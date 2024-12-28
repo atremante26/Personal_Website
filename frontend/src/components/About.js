@@ -6,7 +6,7 @@ const About = () => { // Define About component
                                             // about - variable that stores fetched data
                                             // setAbout - function that updates value of about
 
-    useEffect(() => { // Runs the following code after component renders for the first time
+    useEffect(() => { // Hook that runs the following code after component renders for the first time
         api.get("about/") // Sends a GET request to the /api/about/ endpoint (fetches the "About" data from  Django backend)
         .then(response => { // Process fetched data from GET request
             setAbout(response.data); // Updates about variable with response data (updating triggers a re-rendering in UI)
@@ -18,7 +18,7 @@ const About = () => { // Define About component
 
     return ( // Render the UI
         <div> 
-            <h1>About Me</h1> // Render the heading
+            <h1>About Me</h1> {/* Main heading*/}
             {about.length > 0 ? ( // Checks if about has any data
                 about.map((item, index) => ( // If yes, displays data using map
                     <p key={index}>{item.bio}</p> 
