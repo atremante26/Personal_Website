@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"; // Import React and hooks
-import api from ".../api/api"; // Import Axios instance
-import { response } from "express";
+import api from "../api/api"; // Import Axios instance
 
 const About = () => { // Define About component
     const [about, setAbout] = useState([]); // Initialize state 

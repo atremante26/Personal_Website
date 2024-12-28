@@ -1,50 +1,31 @@
-import React, { useState, useEffect } from "react"; // Import React hooks
-import api from "../api/api"; // Import Axios instance for API requests
-import "./Experience.css"; // Import CSS for styling 
+import React, { useState, useEffect } from "react";
+import api from "../api/api";
 
 const Experience = () => {
-    const [experiences, setExperiences] = useState([]); // State to store experiences
+    const [experiences, setExperiences] = useState([]);
 
     useEffect(() => {
-        api.get("experience/") // Fetch experiences from the API
-            .then((response) => {
-                setExperiences(response.data); // Set the experiences in state
-            })
-            .catch((error) => {
-                console.error("Error fetching experiences:", error);
-            });
-    }, []); // Run only on mount
+        api.get("experience/") 
+            .then((response) => setExperiences(response.data))
+            .catch((error) => console.error("Error fetching experiences:", error));
+    }, []);
 
     return (
-        <div className="timeline">
-            {experiences.map((experience) => (
-                <div
-                    className="timeline-item"
-                    key={experience.id}
-                    onMouseEnter={() => setHoveredId(experience.id)}
-                    onMouseLeave={() => setHoveredId(null)}
-                >
-                    <div
-                        className={`timeline-content ${
-                            hoveredId === experience.id ? "enlarged" : ""
-                        }`}
-                    >
-                        <img src={experience.image} alt={experience.title} />
-                        <h3>{experience.title}</h3>
-                        <p>{experience.company}</p>
-                        {hoveredId === experience.id && (
-                            <div className="details">
-                                <p>{experience.description}</p>
-                                <ul className="skills">
-                                    {experience.skills.map((skill) => (
-                                        <li key={skill.id}>{skill.name}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            ))}
+        <div>
+            <h1>Experience</h1>
+            <ul>
+                {experiences.map((experience) => (
+                    <li key={experience.id}>
+                        <h3>{experience.title} at {experience.company}</h3>
+                        <p>{experience.description}</p>
+                        <ul>
+                            {experience.skills.map((skill) => (
+                                <li key={skill.id}>{skill.name}</li>
+                            ))}
+                        </ul>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
