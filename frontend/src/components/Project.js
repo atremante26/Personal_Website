@@ -19,7 +19,7 @@ const Project = () => {
                         <h3>{project.name}</h3>
                         <p>{project.description}</p>
                         <p>
-                            <strong>Tags:</strong> {project.tags}
+                            <strong>Tags:</strong> {project.tags.map((tag) => tag.name).join(", ")}
                         </p>
                         <ul>
                             {project.skills.map((skill) => (

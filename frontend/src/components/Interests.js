@@ -22,7 +22,7 @@ const Interests = () => {
                             <img src={interest.image} alt={interest.topic} style={{ width: "200px" }} />
                         )}
                         <p>
-                            <strong>Tags:</strong> {interest.tags}
+                            <strong>Tags:</strong> {interest.tags.map((tag) => tag.name).join(", ")}
                         </p>
                         {interest.url && (
                             <p>
