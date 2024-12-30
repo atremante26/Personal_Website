@@ -13,44 +13,94 @@ const Header = () => {
     };
 
     return (
-        <header style={styles.header}>
-            {/* Left: Initials */}
-            <div style={styles.left}>
-                <h1 style={styles.initials}>AT</h1>
-            </div>
+        <header className="flex justify-between items-center px-6 py-4 bg-gray-800 text-white fixed w-full z-50"> {/* Header Container */}
+            {/* Left Section: Name (Andrew Tremante) */}
+            <div className="font-audiowide text-2xl font-bold tracking-wide text-blue-400"> AndrewTremante._ </div>
 
             {/* Center: Navigation Buttons */}
-            <nav style={styles.nav}>
-                <button style={styles.navButton} onClick={() => handleScroll("home")}>Home</button>
-                <button style={styles.navButton} onClick={() => handleScroll("about")}>About</button>
-                <button style={styles.navButton} onClick={() => handleScroll("experience")}>Experience</button>
-                <button style={styles.navButton} onClick={() => handleScroll("projects")}>Projects</button>
-                <button style={styles.navButton} onClick={() => handleScroll("interests")}>Interests</button>
+            <nav className="flex-grow flex justify-center items-center space-x-8">
+                <button
+                    className="font-audiowide hover:text-blue-400 transition-colors duration-300"
+                    onClick={() => handleScroll("home")}
+                >
+                    // home 
+                </button>
+                <button
+                    className="font-audiowide hover:text-blue-400 transition-colors duration-300"
+                    onClick={() => handleScroll("about")}
+                >
+                    // about
+                </button>
+                <button
+                    className="font-audiowide hover:text-blue-400 transition-colors duration-300"
+                    onClick={() => handleScroll("experience")}
+                >
+                    // experience
+                </button>
+                <button
+                    className="font-audiowide hover:text-blue-400 transition-colors duration-300"
+                    onClick={() => handleScroll("projects")}
+                >
+                    // projects
+                </button>
+                <button
+                    className="font-audiowide hover:text-blue-400 transition-colors duration-300"
+                    onClick={() => handleScroll("interests")}
+                >
+                    // interests
+                </button>
             </nav>
 
+
             {/* Right: Contact Icons */}
-            <div style={styles.icons}>
-                <a href="mailto:andrewtremante@gmail.com" style={styles.icon}>
-                    <FontAwesomeIcon icon={faEnvelope} size="2x" />
-                </a>
+            <div className="flex items-center space-x-4">
+                {/* LinkedIn Icon */}
                 <a
                     href="https://www.linkedin.com/in/andrew-tremante-71253a238/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={styles.icon}
+                    className="hover:text-blue-400 transition"
                 >
-                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                    <FontAwesomeIcon icon={faLinkedin} size="lg" />
                 </a>
+
+                {/* GitHub Icon */}
                 <a
                     href="https://github.com/atremante"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={styles.icon}
+                    className="hover:text-blue-400 transition"
                 >
-                    <FontAwesomeIcon icon={faGithub} size="2x" />
+                    <FontAwesomeIcon icon={faGithub} size="lg" />
                 </a>
-                <a href="/path-to-your-resume.pdf" download style={styles.icon}>
-                    <FontAwesomeIcon icon={faFileDownload} size="2x" />
+
+                {/* Email Icon */}
+                <a
+                    href="mailto:andrewtremante@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-400 transition"
+                >
+                    <FontAwesomeIcon icon={faEnvelope} size="lg" />
+                </a>
+                {/* Resume Button */}
+                <a
+                    href={require("../assets/Resume.pdf")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-audiowide px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
+                >
+                    resume
+                </a>
+
+                {/* Transcript Button */}
+                <a
+                    href={require("../assets/Transcript.pdf")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-audiowide px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
+                >
+                    transcript
                 </a>
             </div>
         </header>
