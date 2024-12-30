@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        audiowide: ['Audiowide']
+        audiowide: ['Audiowide'],
+        azeret_mono: ['Azeret Mono']
       }
 
     },

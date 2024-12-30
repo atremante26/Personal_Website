@@ -1,35 +1,51 @@
 import React, { useEffect, useState } from "react"; // Import React and hooks
 import api from "../api/api"; // Import Axios instance
 
-const About = () => { // Define About component
-    const [about, setAbout] = useState([]); // Initialize state 
-                                            // about - variable that stores fetched data
-                                            // setAbout - function that updates value of about
+const About = () => {
+    const [about, setAbout] = useState([]); // State to store data from the backend
 
-    useEffect(() => { // Hook that runs the following code after component renders for the first time
-        api.get("about/") // Sends a GET request to the /api/about/ endpoint (fetches the "About" data from  Django backend)
-        .then(response => { // Process fetched data from GET request
-            setAbout(response.data); // Updates about variable with response data (updating triggers a re-rendering in UI)
-        })
-        .catch(error => { // Handle errors
-            console.error("Error fetching About data:", error); 
-        });
-    }, []); // Ensure that useEffect only runs once
+    useEffect(() => {
+        // Fetch "About" data from the backend
+        api.get("about/")
+            .then((response) => {
+                setAbout(response.data); // Update the about state with fetched data
+            })
+            .catch((error) => {
+                console.error("Error fetching About data:", error); // Error handling
+            });
+    }, []); // Run only on component mount
 
-    return ( // Render the UI
-        <div> 
-            <h1>About Me</h1> {/* Main heading*/}
-            {about.length > 0 ? ( // Checks if about has any data
-                about.map((item, index) => ( // If yes, displays data using map
-                    <p key={index}>{item.bio}</p> 
-                ))
-            ) : (
-                <p>Loading about information...</p> // If no, displays a 'Loading' message until data is fetched
-            )}
-        </div> // Closes the wrapper element
+    return (
+        <div
+            className="min-h-screen flex items-center justify-center text-center p-10"
+            style={{
+                background: `linear-gradient(to bottom, #2d3748, #1a202c)`, // Updated gradient for smooth blending
+            }}
+        >
+            <div>
+                {/* Main Heading */}
+                <h1 className="text-4xl font-audiowide text-white mb-5 text-center">
+                    Hi, I'm Andrew. <span className="font-audiowide text-blue-400">Nice to meet you!</span>
+                </h1>
+
+                {/* About Description */}
+                {about.length > 0 ? (
+                    about.map((item, index) => (
+                        <p
+                            key={index}
+                            className="font-azeret_mono text-xl text-white leading-relaxed text-center max-w-6xl"
+                        >
+                            {item.bio}
+                        </p>
+                    ))
+                ) : (
+                    <p className="font-azeret_mono text-xl text-white leading-relaxed text-center max-w-6xl">
+                        Loading about information...
+                    </p>
+                )}
+            </div>
+        </div>
     );
 };
 
-export default About; // Component is exported
-
-
+export default About;

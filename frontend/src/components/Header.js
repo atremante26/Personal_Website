@@ -1,7 +1,7 @@
 // Importing React and FontAwesome icons for use in the header
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Header = () => {
@@ -22,32 +22,32 @@ const Header = () => {
                 <button
                     className="font-audiowide hover:text-blue-400 transition-colors duration-300"
                     onClick={() => handleScroll("home")}
-                >
-                    // home 
+                > 
+                    {'// home'} 
                 </button>
                 <button
                     className="font-audiowide hover:text-blue-400 transition-colors duration-300"
                     onClick={() => handleScroll("about")}
                 >
-                    // about
+                    {'// about'}
                 </button>
                 <button
                     className="font-audiowide hover:text-blue-400 transition-colors duration-300"
                     onClick={() => handleScroll("experience")}
                 >
-                    // experience
+                    {'// experience'}
                 </button>
                 <button
                     className="font-audiowide hover:text-blue-400 transition-colors duration-300"
                     onClick={() => handleScroll("projects")}
                 >
-                    // projects
+                    {'// projects'}
                 </button>
                 <button
                     className="font-audiowide hover:text-blue-400 transition-colors duration-300"
                     onClick={() => handleScroll("interests")}
                 >
-                    // interests
+                    {'// interests'}
                 </button>
             </nav>
 
@@ -88,7 +88,7 @@ const Header = () => {
                     href={require("../assets/Resume.pdf")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-audiowide px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
+                    className="font-azeret_mono px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
                 >
                     resume
                 </a>
@@ -98,58 +98,13 @@ const Header = () => {
                     href={require("../assets/Transcript.pdf")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-audiowide px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
+                    className="font-azeret_mono px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
                 >
                     transcript
                 </a>
             </div>
         </header>
     );
-};
-
-const styles = {
-    header: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 20px",
-        backgroundColor: "#1e1e1e",
-        color: "#fff",
-        position: "sticky",
-        top: 0,
-        zIndex: 1000,
-    },
-    left: {
-        flex: 1,
-    },
-    initials: {
-        fontSize: "24px",
-        fontWeight: "bold",
-        fontFamily: "Cursive, sans-serif", // Replace with your desired font later
-    },
-    nav: {
-        display: "flex",
-        gap: "15px",
-        flex: 2,
-        justifyContent: "center",
-    },
-    navButton: {
-        background: "none",
-        border: "none",
-        color: "#fff",
-        fontSize: "16px",
-        cursor: "pointer",
-    },
-    icons: {
-        display: "flex",
-        gap: "15px",
-        flex: 1,
-        justifyContent: "flex-end",
-    },
-    icon: {
-        color: "#fff",
-        textDecoration: "none",
-    },
 };
 
 export default Header;
