@@ -66,7 +66,7 @@ const Header = () => {
 
                 {/* GitHub Icon */}
                 <a
-                    href="https://github.com/atremante"
+                    href="https://github.com/atremante26"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-blue-400 transition"
