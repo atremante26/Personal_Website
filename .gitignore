@@ -11,3 +11,6 @@ frontend/build/
 *.log
 *.env
 .DS_Store
+
+# Database backups
+db_backups/*.sql
