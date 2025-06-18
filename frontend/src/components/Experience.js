@@ -57,13 +57,12 @@ const Experience = () => {
         <div
           className="absolute left-0 w-full h-0.5"
           style={{
-            background: "linear-gradient(90deg, #32a8ff, #1a202c)",
-            animation: "glow 3s infinite alternate",
+            background: "#32a8ff",
           }}
         />
         <div className="relative w-full flex justify-between items-center px-16">
           {experiences.map((experience, index) => (
-            <div key={experience.id} className="relative group">
+            <div key={experience.id} className="relative group hover:z-50">
               {/* Timeline Icons */}
               <div className="flex flex-col items-center">
                 <div className="absolute -top-64">
