@@ -3,20 +3,20 @@ export const MEDIA_BASE = "https://personal-website-api-yvaf.onrender.com";
 export function makeMediaUrl(path) {
   if (!path) return "";
 
-  // If it's a broken full URL that contains `/media/`, fix it
+  // Fix full URLs that wrongly contain `/media/`
   if (path.startsWith("http") && path.includes("/media/")) {
-    const cleaned = path.split("/media/")[1]; // everything after /media/
-    return `${MEDIA_BASE}/static/${cleaned.replace(/^\/+/, "")}`;
+    const cleaned = path.split("/media/")[1];
+    return `${MEDIA_BASE}/static/${cleaned.replace(/^static\//, "")}`;
   }
 
-  // If it's already a correct full URL
+  // If it's already a valid full URL and not broken
   if (path.startsWith("http")) return path;
 
-  // Clean relative paths too
+  // Clean relative paths
   const cleaned = path
-    .replace(/^\/?media\/?/, "")
-    .replace(/^\/?static\/?/, "")
-    .replace(/^\/+/, "");
+    .replace(/^\/?media\/?/, "")   // remove leading media/
+    .replace(/^\/?static\/?/, "")  // remove leading static/
+    .replace(/^\/+/, "");          // remove any leading slashes
 
   return `${MEDIA_BASE}/static/${cleaned}`;
 }
