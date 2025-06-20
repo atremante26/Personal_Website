@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/api";
+import { makeMediaUrl } from "../utils/media";
 
 const Experience = () => {
   const [experiences, setExperiences] = useState([]);
@@ -68,7 +69,7 @@ const Experience = () => {
                 <div className="absolute -top-64">
                   <div className="w-56 h-56 rounded-full border-2 border-blue-400 bg-gray-800 overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
                     <img
-                      src={`https://personal-website-api-yvaf.onrender.com/${experience.image}`}
+                      src={makeMediaUrl(experience.image)}
                       alt={experience.title}
                       className="w-full h-full object-contain p-2"
                     />
@@ -105,7 +106,7 @@ const Experience = () => {
                   {/* Background Image Watermark */}
                   <div className="absolute inset-0 opacity-10 pointer-events-none">
                     <img
-                      src={`https://personal-website-api-yvaf.onrender.com/${experience.image}`}
+                      src={makeMediaUrl(experience.image)}
                       alt=""
                       className="w-full h-full object-contain"
                     />
