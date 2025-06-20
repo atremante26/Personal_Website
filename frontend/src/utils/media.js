@@ -2,8 +2,8 @@ export const MEDIA_BASE = "https://personal-website-api-yvaf.onrender.com";
 
 export function makeMediaUrl(path) {
   if (!path) return "";
-  if (path.startsWith("http://") || path.startsWith("https://")) {
-    return path;
-  }
+  // Already an absolute URL?
+  if (path.startsWith("http")) return path;
+  // Otherwise strip leading slashes, then prepend the base
   return `${MEDIA_BASE}/${path.replace(/^\/+/, "")}`;
 }
