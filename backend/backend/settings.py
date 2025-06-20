@@ -55,7 +55,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3000",  # for local dev
+    "https://atremante26.github.io",       # root GitHub Pages domain
+    "https://atremante26.github.io/Personal_Website",  # your site subpath
 ]
 
 MEDIA_URL = '/media/'
