@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/api";
+import { makeMediaUrl } from "../utils/media";
 
 const Project = () => {
   const [projects, setProjects] = useState([]);

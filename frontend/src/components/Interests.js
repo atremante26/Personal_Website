@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../api/api";
+import { makeMediaUrl } from "../utils/media";
 
 const Interests = () => {
   const [interests, setInterests] = useState([]);
@@ -42,7 +43,7 @@ const Interests = () => {
               {/* Image */}
               <div className="flex justify-center mb-6">
                 <img
-                  src={makeMediaUrl(interest.image)}
+                  src={makeMediaUrl(hoveredInterest.image)}
                   alt={hoveredInterest.topic}
                   className="w-2/3 h-64 object-contain rounded-lg"
                 />
