@@ -132,3 +132,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if os.environ.get("RUN_MIGRATIONS", "False") == "True":
+    import django
+    django.setup()
+    from django.core.management import call_command
+    call_command("migrate", interactive=False)
