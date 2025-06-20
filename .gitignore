@@ -1,6 +1,6 @@
 # Python
 backend/__pycache__/
-backend/db.sqlite3  # If you're using SQLite
+backend/db.sqlite3
 backend/venv/       # Virtual environment
 
 # Node.js

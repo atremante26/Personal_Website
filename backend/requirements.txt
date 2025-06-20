@@ -7,3 +7,4 @@ python-dotenv
 djangorestframework
 django-cors-headers
 Pillow
+whitenoise==6.9.0
