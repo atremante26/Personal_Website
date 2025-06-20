@@ -83,7 +83,7 @@ const Project = () => {
             {/* Default View: Project Image */}
             <div className="w-full h-64 relative overflow-hidden">
               <img
-                src={project.image}
+                src={`https://personal-website-api-yvaf.onrender.com/${project.image}`}
                 alt={project.name}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:opacity-0"
               />

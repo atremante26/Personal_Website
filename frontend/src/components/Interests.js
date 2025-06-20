@@ -42,7 +42,7 @@ const Interests = () => {
               {/* Image */}
               <div className="flex justify-center mb-6">
                 <img
-                  src={hoveredInterest.image}
+                  src={`https://personal-website-api-yvaf.onrender.com/${hoveredInterest.image}`}
                   alt={hoveredInterest.topic}
                   className="w-2/3 h-64 object-contain rounded-lg"
                 />
@@ -90,7 +90,7 @@ const Interests = () => {
               onMouseEnter={() => setHoveredInterest(interest)}
             >
               <img
-                src={interest.image}
+                src={`https://personal-website-api-yvaf.onrender.com/${interest.image}`}
                 alt={interest.topic}
                 className="w-full h-32 object-cover rounded-t-lg"
               />
