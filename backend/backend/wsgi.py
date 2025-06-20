@@ -14,13 +14,14 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 
 application = get_wsgi_application()
 
-# Load fixture on deployment (Render-specific workaround)
-import django
-from django.core.management import call_command
+# Load fixture on Render deployment
+if os.environ.get("RENDER"):  # Only run on Render
+    import django
+    from django.core.management import call_command
 
-django.setup()
+    django.setup()
 
-try:
-    call_command('loaddata', 'data.json')
-except Exception as e:
-    print("Fixture loading failed:", e)
+    try:
+        call_command('loaddata', 'portfolio/fixtures/data.json')
+    except Exception as e:
+        print("Fixture loading failed:", e)
