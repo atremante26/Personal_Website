@@ -136,7 +136,7 @@ const Experience = () => {
                           onMouseLeave={() => setHoveredSkill(null)}
                         >
                           <img
-                            src={skill.icon}
+                            src={makeMediaUrl(skill.icon)}
                             alt={skill.name}
                             className="w-8 h-8 transition-transform hover:scale-110"
                           />
