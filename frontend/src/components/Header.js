@@ -85,7 +85,7 @@ const Header = () => {
                 </a>
                 {/* Resume Button */}
                 <a
-                    href={require("../assets/Resume.pdf")}
+                    href="/assets/Resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-azeret_mono px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
@@ -95,7 +95,7 @@ const Header = () => {
 
                 {/* Transcript Button */}
                 <a
-                    href={require("../assets/Transcript.pdf")}
+                    href="/assets/Transcript.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-azeret_mono px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
