@@ -1,4 +1,3 @@
-// Importing React and FontAwesome icons for use in the header
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -8,22 +7,24 @@ const Header = () => {
     const handleScroll = (sectionId) => {
         const section = document.getElementById(sectionId);
         if (section) {
-            section.scrollIntoView({ behavior: "smooth" }); // Smooth scrolling
+            section.scrollIntoView({ behavior: "smooth" });
         }
     };
 
     return (
-        <header className="flex justify-between items-center px-6 py-4 bg-gray-800 text-white fixed w-full z-50"> {/* Header Container */}
-            {/* Left Section: Name (Andrew Tremante) */}
-            <div className="font-audiowide text-2xl font-bold tracking-wide text-blue-400"> AndrewTremante._ </div>
+        <header className="flex justify-between items-center px-6 py-4 bg-gray-800 text-white fixed w-full z-50">
+            {/* Left: Name */}
+            <div className="font-audiowide text-2xl font-bold tracking-wide text-blue-400">
+                AndrewTremante._
+            </div>
 
-            {/* Center: Navigation Buttons */}
-            <nav className="flex-grow flex justify-center items-center space-x-8">
+            {/* Center: Nav */}
+            <nav className="flex-grow flex justify-center items-center space-x-6">
                 <button
                     className="font-audiowide hover:text-blue-400 transition-colors duration-300"
                     onClick={() => handleScroll("home")}
-                > 
-                    {'// home'} 
+                >
+                    {'// home'}
                 </button>
                 <button
                     className="font-audiowide hover:text-blue-400 transition-colors duration-300"
@@ -39,6 +40,12 @@ const Header = () => {
                 </button>
                 <button
                     className="font-audiowide hover:text-blue-400 transition-colors duration-300"
+                    onClick={() => handleScroll("publications")}
+                >
+                    {'// publications'}
+                </button>
+                <button
+                    className="font-audiowide hover:text-blue-400 transition-colors duration-300"
                     onClick={() => handleScroll("projects")}
                 >
                     {'// projects'}
@@ -51,10 +58,8 @@ const Header = () => {
                 </button>
             </nav>
 
-
-            {/* Right: Contact Icons */}
+            {/* Right: Icons + Buttons */}
             <div className="flex items-center space-x-4">
-                {/* LinkedIn Icon */}
                 <a
                     href="https://www.linkedin.com/in/andrew-tremante-71253a238/"
                     target="_blank"
@@ -63,8 +68,6 @@ const Header = () => {
                 >
                     <FontAwesomeIcon icon={faLinkedin} size="lg" />
                 </a>
-
-                {/* GitHub Icon */}
                 <a
                     href="https://github.com/atremante26"
                     target="_blank"
@@ -73,8 +76,6 @@ const Header = () => {
                 >
                     <FontAwesomeIcon icon={faGithub} size="lg" />
                 </a>
-
-                {/* Email Icon */}
                 <a
                     href="mailto:andrewtremante@gmail.com"
                     target="_blank"
@@ -83,7 +84,6 @@ const Header = () => {
                 >
                     <FontAwesomeIcon icon={faEnvelope} size="lg" />
                 </a>
-                {/* Resume Button */}
                 <a
                     href="/Resume.pdf"
                     target="_blank"
@@ -92,8 +92,6 @@ const Header = () => {
                 >
                     resume
                 </a>
-
-                {/* Transcript Button */}
                 <a
                     href="/Transcript.pdf"
                     target="_blank"
