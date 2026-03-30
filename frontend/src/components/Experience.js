@@ -185,7 +185,7 @@ const ExperienceCard = ({ experience, formatDateRange, hoveredSkill, setHoveredS
 
                 {/* Skills */}
                 {experience.skills && experience.skills.length > 0 && (
-                    <div className="flex flex-wrap gap-3 pt-1">
+                    <div className="flex flex-wrap gap-3 pt-1 justify-center">
                         {experience.skills.map((skill, skillIndex) => (
                             <div
                                 key={skillIndex}
