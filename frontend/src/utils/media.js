@@ -9,7 +9,13 @@ export function makeMediaUrl(path) {
     return `${MEDIA_BASE}${path}`;
   }
 
-  // Everything else is a Django media upload — serve from /media/
   const cleaned = path.replace(/^\/+/, "");
+
+  // Path contains static/ — legacy file stored in static directory
+  if (cleaned.startsWith("static/")) {
+    return `${MEDIA_BASE}/${cleaned}`;
+  }
+
+  // Everything else is a Django media upload — serve from /media/
   return `${MEDIA_BASE}/media/${cleaned}`;
 }
