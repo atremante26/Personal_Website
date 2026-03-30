@@ -86,16 +86,14 @@ const Header = () => {
                 </a>
                 <a
                     href="/Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download="Andrew_Tremante_Resume.pdf"
                     className="font-azeret_mono px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
                 >
                     resume
                 </a>
                 <a
                     href="/Transcript.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download="Andrew_Tremante_Transcript.pdf"
                     className="font-azeret_mono px-4 py-2 border-2 border-blue-400 text-blue-400 bg-white rounded-lg hover:bg-blue-400 hover:text-white transition"
                 >
                     transcript
