@@ -32,7 +32,7 @@ const Project = () => {
         <div
             className="min-h-screen flex flex-col items-center p-10"
             style={{
-                background: "linear-gradient(to bottom, #2e3a50, #1a202c)",
+                background: "linear-gradient(to bottom, #2d3748, #1a202c)",
                 paddingTop: "150px",
             }}
         >
@@ -62,11 +62,12 @@ const Project = () => {
             </div>
 
             {/* Project Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-2">
+            <div className="w-full max-w-6xl flex flex-wrap justify-center gap-12 mt-2">
                 {filteredProjects.map((project) => (
                     <div
                         key={project.id}
                         className="relative group bg-gray-800 rounded-lg shadow-lg overflow-hidden cursor-pointer"
+                        style={{ width: "calc(33.333% - 2rem)", minWidth: "280px" }}
                         onClick={() => {
                             if (project.github_url) {
                                 window.open(project.github_url, "_blank");

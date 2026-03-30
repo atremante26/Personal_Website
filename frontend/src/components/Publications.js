@@ -36,7 +36,7 @@ const Publications = () => {
         <div
             className="min-h-screen flex flex-col items-center pt-32 pb-20 px-10"
             style={{
-                background: "linear-gradient(to bottom, #2d3748, #1a202c)",
+                background: "linear-gradient(to bottom, #2e3a50, #2d3748)",
             }}
         >
             {/* Section Title */}
@@ -90,12 +90,14 @@ const Publications = () => {
                                     </p>
 
                                     {/* Venue + Year */}
-                                    <p
-                                        className="font-audiowide text-sm text-[#32a8ff]"
-                                        style={{ textShadow: "0px 2px 4px rgba(50, 168, 255, 0.3)" }}
-                                    >
-                                        {pub.venue} &middot; {pub.year}
-                                    </p>
+                                    {pub.status === "published" && (pub.venue || pub.year) && (
+                                        <p
+                                            className="font-audiowide text-sm text-[#32a8ff]"
+                                            style={{ textShadow: "0px 2px 4px rgba(50, 168, 255, 0.3)" }}
+                                        >
+                                            {pub.venue} {pub.venue && pub.year && <>&middot;</>} {pub.year}
+                                        </p>
+                                    )}
 
                                     {/* Description (optional) */}
                                     {pub.description && (
