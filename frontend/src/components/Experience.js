@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import api from "../api/api";
 import { makeMediaUrl } from "../utils/media";
 
@@ -10,7 +11,7 @@ const Experience = () => {
         api.get("experience/")
             .then((response) => {
                 const sorted = response.data.sort(
-                    (a, b) => new Date(a.start_date) - new Date(b.start_date)
+                    (a, b) => new Date(b.start_date) - new Date(a.start_date)
                 );
                 setExperiences(sorted);
             })
@@ -36,138 +37,178 @@ const Experience = () => {
         >
             {/* Section Title */}
             <h1
-                className="text-5xl text-[#32a8ff] font-audiowide text-center mb-32"
+                className="text-5xl text-[#32a8ff] font-audiowide text-center mb-24"
                 style={{ textShadow: "0px 4px 6px rgba(50, 168, 255, 0.5)" }}
             >
                 Experience
             </h1>
 
-            {/* Timeline */}
-            <div className="relative max-w-7xl mx-auto h-[600px] flex items-center">
+            {/* Vertical Timeline */}
+            <div className="relative max-w-6xl mx-auto px-8">
+
+                {/* Center vertical line */}
                 <div
-                    className="absolute left-0 w-full h-0.5"
-                    style={{ background: "#32a8ff" }}
+                    className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2"
+                    style={{ background: "linear-gradient(to bottom, #32a8ff88, #32a8ff, #32a8ff88)" }}
                 />
-                <div className="relative w-full flex justify-between items-center px-16">
-                    {experiences.map((experience, index) => (
-                        <div key={experience.id} className="relative group hover:z-50">
-                            {/* Icon above line */}
-                            <div className="flex flex-col items-center">
-                                <div className="absolute -top-64">
-                                    <div className="w-56 h-56 rounded-full border-2 border-blue-400 bg-gray-800 overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-                                        <img
-                                            src={makeMediaUrl(experience.image)}
-                                            alt={experience.title}
-                                            className="w-full h-full object-contain p-2"
-                                        />
-                                    </div>
-                                </div>
 
-                                {/* Title box on line */}
-                                <div className="absolute -translate-y-1/2">
-                                    <div className="bg-gray-700 px-4 py-2 rounded">
-                                        <span className="font-audiowide text-lg text-white whitespace-nowrap">
-                                            {experience.title}
-                                        </span>
-                                    </div>
-                                </div>
+                <div className="flex flex-col gap-16">
+                    {experiences.map((experience, index) => {
+                        const isLeft = index % 2 === 0;
+                        return (
+                            <div key={experience.id} className="relative flex items-center">
 
-                                {/* Date below line */}
-                                <div className="font-audiowide absolute top-8 left-1/2 -translate-x-1/2 text-base text-[#32a8ff] text-center whitespace-nowrap">
-                                    {formatDateRange(experience.start_date, experience.end_date)}
-                                </div>
-                            </div>
-
-                            {/* Hover card */}
-                            <div
-                                className={`absolute -top-[300px] opacity-0 invisible
-                                    group-hover:opacity-100 group-hover:visible transition-all duration-300
-                                    ${index === 0
-                                        ? "translate-x-[-25%]"
-                                        : index === experiences.length - 1
-                                        ? "translate-x-[-75%]"
-                                        : "left-1/2 -translate-x-1/2"}`}
-                            >
-                                <div
-                                    className="w-[520px] p-8 rounded-lg shadow-xl relative flex flex-col"
-                                    style={{ backgroundColor: "#111827", minHeight: "420px" }}
-                                >
-                                    {/* Watermark */}
-                                    <div className="absolute inset-0 opacity-10 pointer-events-none">
-                                        <img
-                                            src={makeMediaUrl(experience.image)}
-                                            alt=""
-                                            className="w-full h-full object-contain"
-                                        />
-                                    </div>
-
-                                    <div className="relative z-10 flex flex-col gap-4">
-                                        {/* Title */}
-                                        <h2
-                                            className="text-2xl font-audiowide text-[#32a8ff] text-center"
-                                            style={{ textShadow: "0px 4px 6px rgba(50, 168, 255, 0.5)" }}
-                                        >
-                                            {experience.title}
-                                        </h2>
-
-                                        {/* Company + dates */}
-                                        <p className="font-audiowide text-sm text-gray-400 text-center">
-                                            {experience.company} &middot;{" "}
-                                            {formatDateRange(experience.start_date, experience.end_date)}
-                                        </p>
-
-                                        {/* Lead sentence */}
-                                        {experience.lead && (
-                                            <p className="font-azeret_mono text-sm text-gray-300 leading-relaxed">
-                                                {experience.lead}
-                                            </p>
-                                        )}
-
-                                        {/* Bullets */}
-                                        {experience.bullets_list && experience.bullets_list.length > 0 && (
-                                            <ul className="flex flex-col gap-2">
-                                                {experience.bullets_list.map((bullet, i) => (
-                                                    <li
-                                                        key={i}
-                                                        className="font-azeret_mono text-sm text-gray-400 leading-relaxed flex gap-2"
-                                                    >
-                                                        <span className="text-[#32a8ff] mt-1 shrink-0">▸</span>
-                                                        <span>{bullet}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-
-                                        {/* Skills */}
-                                        <div className="flex flex-wrap gap-4 justify-center pt-2">
-                                            {experience.skills.map((skill, skillIndex) => (
-                                                <div
-                                                    key={skillIndex}
-                                                    className="relative"
-                                                    onMouseEnter={() =>
-                                                        setHoveredSkill(`${experience.id}-${skillIndex}`)
-                                                    }
-                                                    onMouseLeave={() => setHoveredSkill(null)}
-                                                >
-                                                    <img
-                                                        src={makeMediaUrl(skill.icon)}
-                                                        alt={skill.name}
-                                                        className="w-8 h-8 transition-transform hover:scale-110"
-                                                    />
-                                                    {hoveredSkill === `${experience.id}-${skillIndex}` && (
-                                                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 px-3 py-1 rounded text-sm whitespace-nowrap z-10">
-                                                            {skill.name}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            ))}
+                                {/* Left side */}
+                                <div className="w-1/2 pr-12 flex justify-end">
+                                    {isLeft ? (
+                                        <div className="group w-full max-w-xl">
+                                            <ExperienceCard
+                                                experience={experience}
+                                                formatDateRange={formatDateRange}
+                                                hoveredSkill={hoveredSkill}
+                                                setHoveredSkill={setHoveredSkill}
+                                                align="right"
+                                            />
                                         </div>
+                                    ) : (
+                                        <div className="flex flex-col items-end gap-1 py-4">
+                                            <span className="font-audiowide text-sm text-[#32a8ff]">
+                                                {formatDateRange(experience.start_date, experience.end_date)}
+                                            </span>
+                                            <span className="font-audiowide text-xs text-gray-500">
+                                                {experience.company}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Center dot + logo */}
+                                <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
+                                    <div
+                                        className="w-16 h-16 rounded-full border-2 border-blue-400 bg-gray-800 overflow-hidden shadow-lg"
+                                        style={{ boxShadow: "0 0 12px rgba(50, 168, 255, 0.3)" }}
+                                    >
+                                        <img
+                                            src={makeMediaUrl(experience.image)}
+                                            alt={experience.company}
+                                            className="w-full h-full object-contain p-1.5"
+                                        />
                                     </div>
                                 </div>
+
+                                {/* Right side */}
+                                <div className="w-1/2 pl-12 flex justify-start">
+                                    {!isLeft ? (
+                                        <div className="group w-full max-w-xl">
+                                            <ExperienceCard
+                                                experience={experience}
+                                                formatDateRange={formatDateRange}
+                                                hoveredSkill={hoveredSkill}
+                                                setHoveredSkill={setHoveredSkill}
+                                                align="left"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col items-start gap-1 py-4">
+                                            <span className="font-audiowide text-sm text-[#32a8ff]">
+                                                {formatDateRange(experience.start_date, experience.end_date)}
+                                            </span>
+                                            <span className="font-audiowide text-xs text-gray-500">
+                                                {experience.company}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
+            </div>
+        </div>
+    );
+};
+
+const ExperienceCard = ({ experience, formatDateRange, hoveredSkill, setHoveredSkill, align }) => {
+    return (
+        <div
+            className="relative rounded-lg p-6 flex flex-col gap-4 transition-all duration-300 hover:shadow-blue-900/40 hover:shadow-xl"
+            style={{
+                backgroundColor: "#111827",
+                border: "1px solid rgba(50, 168, 255, 0.15)",
+            }}
+        >
+            {/* Watermark */}
+            <div className="absolute inset-0 opacity-5 pointer-events-none rounded-lg overflow-hidden">
+                <img
+                    src={makeMediaUrl(experience.image)}
+                    alt=""
+                    className="w-full h-full object-contain"
+                />
+            </div>
+
+            <div className="relative z-10 flex flex-col gap-3">
+                {/* Title */}
+                <h2
+                    className="text-xl font-audiowide text-[#32a8ff]"
+                    style={{ textShadow: "0px 4px 6px rgba(50, 168, 255, 0.4)" }}
+                >
+                    {experience.title}
+                </h2>
+
+                {/* Company + dates */}
+                <p className="font-audiowide text-xs text-gray-400">
+                    {experience.company} &middot;{" "}
+                    {formatDateRange(experience.start_date, experience.end_date)}
+                </p>
+
+                {/* Lead */}
+                {experience.lead && (
+                    <p className="font-azeret_mono text-sm text-gray-300 leading-relaxed">
+                        {experience.lead}
+                    </p>
+                )}
+
+                {/* Bullets */}
+                {experience.bullets_list && experience.bullets_list.length > 0 && (
+                    <ul className="flex flex-col gap-2">
+                        {experience.bullets_list.map((bullet, i) => (
+                            <li
+                                key={i}
+                                className="font-azeret_mono text-xs text-gray-400 leading-relaxed flex gap-2"
+                            >
+                                <span className="text-[#32a8ff] mt-0.5 shrink-0">▸</span>
+                                <span>{bullet}</span>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
+                {/* Skills */}
+                {experience.skills && experience.skills.length > 0 && (
+                    <div className="flex flex-wrap gap-3 pt-1">
+                        {experience.skills.map((skill, skillIndex) => (
+                            <div
+                                key={skillIndex}
+                                className="relative"
+                                onMouseEnter={() =>
+                                    setHoveredSkill(`${experience.id}-${skillIndex}`)
+                                }
+                                onMouseLeave={() => setHoveredSkill(null)}
+                            >
+                                <img
+                                    src={makeMediaUrl(skill.icon)}
+                                    alt={skill.name}
+                                    className="w-7 h-7 transition-transform hover:scale-110"
+                                />
+                                {hoveredSkill === `${experience.id}-${skillIndex}` && (
+                                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 px-3 py-1 rounded text-xs whitespace-nowrap z-10 border border-gray-700">
+                                        {skill.name}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
