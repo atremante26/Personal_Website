@@ -108,7 +108,7 @@ const Home = () => {
                     Andrew Tremante
                 </h1>
                 <p className="font-azeret_mono text-3xl font-medium text-white mt-4">
-                    CS + Math @ Amherst College
+                    CS @ Amherst College | Data Science @ IBM | Text-to-SQL Research
                 </p>
             </div>
 
